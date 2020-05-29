@@ -1,4 +1,13 @@
 #include "processor.h"
+#include <string>
+#include <vector>
 
-// TODO: Return the aggregate CPU utilization
-float Processor::Utilization() { return 0.0; }
+#include "linux_parser.h"
+
+using std::string;
+using std::vector;
+
+// Return FLOAT for % percentage of CPU utilization
+float Processor::Utilization() {
+  return (float)LinuxParser::ActiveJiffies() / LinuxParser::Jiffies();
+}
